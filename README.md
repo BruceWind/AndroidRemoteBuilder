@@ -30,10 +30,36 @@ Beside the project specific setup we need 2 more things, an ssh-key in order to 
   ```
   **REPLACE IP ADDRESS**
 
-To SSH to the docker container: `ssh REMOTE_BUILDER`
+To SSH to the docker container: `ssh remote_builder`
 
 For android you can now just copy the mainframer folder and rename it `.mainframer` and you should be go to run ` bash ./mainframer.sh ./gradlew assembleDebug`.
 
 **And now enjoy faster builds**
 
 ### DEFAULT USER ROOT:ROOT IS USED IN THIS SETUP.
+
+
+### In addition
+when you got the error:
+```
+/usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: "/home/xxx/.ssh/remote-builder.pub"
+/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+
+/usr/bin/ssh-copy-id: ERROR: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ERROR: @    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+ERROR: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ERROR: IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+ERROR: Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+ERROR: It is also possible that a host key has just been changed.
+ERROR: The fingerprint for the ECDSA key sent by the remote host is
+ERROR: SHA256:tbW7XTrFLjqAIUp+SjQ+koR+GJak26E+rmXfLs5w7Es.
+ERROR: Please contact your system administrator.
+ERROR: Add correct host key in /home/xxx/.ssh/known_hosts to get rid of this message.
+ERROR: Offending ECDSA key in /home/xxx/.ssh/known_hosts:32
+
+ERROR:   remove with:
+ERROR:   ssh-keygen -f "/home/xxx/.ssh/known_hosts" -R "[127.0.0.1]:23"
+ERROR: ECDSA host key for [127.0.0.1]:23 has changed and you have requested strict checking.
+ERROR: Host key verification failed.
+```
+Obviously, you need run `ERROR:   ssh-keygen -f "/home/xxx/.ssh/known_hosts" -R "[127.0.0.1]:23"`. and retry.
