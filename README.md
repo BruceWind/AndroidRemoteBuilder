@@ -63,3 +63,14 @@ ERROR: ECDSA host key for [127.0.0.1]:23 has changed and you have requested stri
 ERROR: Host key verification failed.
 ```
 Obviously, you need run `ERROR:   ssh-keygen -f "/home/xxx/.ssh/known_hosts" -R "[127.0.0.1]:23"`. and retry.
+
+A next error:
+```
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Could not determine java version from '11.0.11'.
+
+```
+run `./gradlew wrapper --gradle-version 5.1.1`
