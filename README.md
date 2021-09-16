@@ -16,7 +16,7 @@ Beside the project specific setup we need 2 more things, an ssh-key in order to 
   ```bash
   ssh-keygen -t rsa -f ~/.ssh/remote-builder -q -N ""
   #brew install ssh-copy-id
-  ssh-copy-id -i ~/.ssh/remote-builder root@127.0.0.1 -p 23
+  ssh-copy-id -i ~/.ssh/remote-builder  -p 23 root@127.0.0.1
 
   echo -e "Host remote_builder
             User root 

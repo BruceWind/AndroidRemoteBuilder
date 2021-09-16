@@ -24,12 +24,16 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get -qq update && \
   apt-get install -y openssh-server && \
   mkdir /var/run/sshd && \
-  sed -ri 's/^PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config && \
-  sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
+  echo "PermitRootLogin yes" >> /etc/ssh/sshd_config && \
+  sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config && \ 
+  sed -ri 's/#PermitUserEnvironment no/PermitUserEnvironment yes/g' /etc/ssh/sshd_config && \ 
+  mkdir -p /root/.ssh/ && \
+  touch /root/.ssh/environment && \
+  echo "ANDROID_HOME=${ANDROID_SDK_ROOT}"  >> /root/.ssh/environment && \
+  touch /etc/enviroment && \
+  echo "ANDROID_HOME=${ANDROID_SDK_ROOT}"  >> /etc/enviroment
 EXPOSE 22
 CMD    ["/usr/sbin/sshd", "-D"]
-
-RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 
 RUN echo 'root:root' | chpasswd
 
@@ -73,8 +77,6 @@ RUN mkdir -p /root/.android \
 
 RUN while read -r package; do PACKAGES="${PACKAGES}${package} "; done < /sdk/packages.txt \
   && ${ANDROID_SDK_ROOT}/cmdline-tools/tools/bin/sdkmanager --sdk_root=${ANDROID_SDK_ROOT} ${PACKAGES}
-
-
 
 # Cleaning
 RUN apt-get clean
