@@ -1,7 +1,10 @@
-# AndroidRemoteBuildImage
+# AndroidRemoteBuildWithDocker
 
+If you build Android project on MacBook or other laptop, you may think your computer performance is not enough.
 
-Mainframer setup in docker to easily deploy it on all powerful servers
+I used [Mainframer](https://github.com/buildfoundation/mainframer) to build on my desktop that is high-performance/powerful.
+
+In this repo, I make a docker image with [Mainframer](https://github.com/buildfoundation/mainframer) to create a  **builder server**. It works on not only **terminal** but also **Android Studio**.
 
 # Build server
 In order to build the docker image run following command `docker build -t mainframer-docker .`
@@ -74,3 +77,27 @@ Could not determine java version from '11.0.11'.
 
 ```
 run `./gradlew wrapper --gradle-version 5.1.1`
+
+
+### build with Android Studio
+
+1. open Android Studio， then do these steps：
+
+1. click **Run → Edit Configuration → +**.
+
+1. select your **Android App**.
+
+1. name a new name, e.g. remote-build.
+
+1. in **Module**, select submodule name, may be `app`.
+
+1. in **Before Launch**, click **-** to delete `Gradle-aware Make`
+
+1. in **Before Launch**, click **+**, add **Run External Tool**, input a new name，like `remote assembleDebug`.
+
+
+1. in **Program**, input `bash`.
+
+1. in **Parameters** input `mainframer.sh ./gradlew :app:assembleDebug -Pandroid.enableBuildCache=true`
+
+1. in **Working directory** , input `$ProjectFileDir$`.
