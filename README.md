@@ -1,8 +1,9 @@
 # AndroidRemoteBuildWithDocker
 
-If you build Android project on MacBook or other laptop, you may think your computer performance is not enough.
+If you build Android project on MacBook or other laptop, you may think your computer performance is not enough. 
+So you may want a powerful and portable workstation. It is impossible. But you can build on remote PC.
 
-I used [Mainframer](https://github.com/buildfoundation/mainframer) to build on my desktop that is high-performance/powerful.
+The trouble on me as well, I used to build with [Mainframer](https://github.com/buildfoundation/mainframer) on my desktop that is high-performance/powerful.
 
 In this repo, I make a docker image with [Mainframer](https://github.com/buildfoundation/mainframer) to create a  **builder server**. It works on not only **terminal** but also **Android Studio**.
 
