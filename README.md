@@ -43,7 +43,34 @@ For android you can now just copy the mainframer folder and rename it `.mainfram
 ### DEFAULT USER ROOT:ROOT IS USED IN THIS SETUP.
 
 
+
+### build with Android Studio
+
+1. open Android Studio， then do these steps：
+
+1. click **Run → Edit Configuration → +**.
+
+1. select your **Android App**.
+
+1. name a new name, e.g. remote-build.
+
+1. in **Module**, select submodule name, may be `app`.
+
+1. in **Before Launch**, click **-** to delete `Gradle-aware Make`
+
+1. in **Before Launch**, click **+**, add **Run External Tool**, input a new name，like `remote assembleDebug`.
+
+
+1. in **Program**, input `bash`.
+
+1. in **Parameters** input `mainframer.sh ./gradlew :app:assembleDebug -Pandroid.enableBuildCache=true`
+
+1. in **Working directory** , input `$ProjectFileDir$`.
+
+
+
 ### In addition
+
 when you got the error:
 ```
 /usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: "/home/xxx/.ssh/remote-builder.pub"
@@ -79,26 +106,8 @@ Could not determine java version from '11.0.11'.
 ```
 run `./gradlew wrapper --gradle-version 5.1.1`
 
+**install some sdk?**
 
-### build with Android Studio
-
-1. open Android Studio， then do these steps：
-
-1. click **Run → Edit Configuration → +**.
-
-1. select your **Android App**.
-
-1. name a new name, e.g. remote-build.
-
-1. in **Module**, select submodule name, may be `app`.
-
-1. in **Before Launch**, click **-** to delete `Gradle-aware Make`
-
-1. in **Before Launch**, click **+**, add **Run External Tool**, input a new name，like `remote assembleDebug`.
-
-
-1. in **Program**, input `bash`.
-
-1. in **Parameters** input `mainframer.sh ./gradlew :app:assembleDebug -Pandroid.enableBuildCache=true`
-
-1. in **Working directory** , input `$ProjectFileDir$`.
+1. start your docker,
+1. run `ssh remote_builder` to enter your docker container. Or use docker command to enter it.
+1. run `/sdk/tools/bin/sdkmanager--install "ndk;21.0.6113669" --channel=3`.
