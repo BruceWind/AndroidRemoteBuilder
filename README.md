@@ -1,22 +1,22 @@
 # AndroidRemoteBuildWithDocker
 
 If you build Android project on MacBook or other laptops, you must think your computer performance is not enough. Your laptop battery is not enough as well.  And you must spend a lot time on waiting it.
-So you may want a powerful and portable workstation. It is impossible. But you can build on remote PC.
-The trouble on me as well. But I have fixed it. I used to build with [Mainframer](https://github.com/buildfoundation/mainframer) on my powerful desktop.
-It is a problem that Mainframer configuring is not simple. In case I want to build on a cloud service or a new computer, tremendous steps of configuration make me feel tired. Whereas a virtualization technology , such as `Docker` and `Kubernetes`, is very efficient that I've used it in everywhere. 
-In this repo, I make a docker image for a **builder server** that contains Android environment and [Mainframer](https://github.com/buildfoundation/mainframer). You can deploy a google cloud or amazon cloud server for your remote and powerful building. On the other hand, , you can run on your desktop in case you have a powerful/high-performance PC with your laptop under one LAN. It works on not only **terminal** but also **Android Studio**.
+So you may want a powerful and portable workstation. It is impossible. But you can build on remote desktop.
+The trouble on me as well but I fixed it. I used to take a remote-build with [Mainframer](https://github.com/buildfoundation/mainframer) on my powerful desktop.
+It is a problem that Mainframer configuring with Android will spend lost time. In case of building with a cloud service or new desktop, tremendous steps of configuration make me feel tired. Whereas a virtualization technology , such as `Docker` and `Kubernetes`, which I've used in everywhere is very efficient and easy in backup. 
+In this repo, I make a docker image for a **builder server** that contains Android environment and [Mainframer](https://github.com/buildfoundation/mainframer). You can deploy a google cloud or amazon cloud server for your remote and powerful building. Furthermore, you can run on your desktop in case you have a powerful/high-performance PC with your laptop under one LAN. It works on not only **terminal** but also **Android Studio**.
 
-# Server configuration
+## Server configuration
 <details><summary>click to expand</summary>
 
 First step is building docker image. In your terminal, run this command `docker build -t mainframer-docker .`
 
 Last step is starting it: run `docker run --restart always -d -p 23:22 mainframer-docker`. 
 
-Now, if there is no error,  run `docker container ls | grep mainframer-dockers` to detect if it is started. May everything is very well.
+Now, if there is no error,  run `docker container ls | grep mainframer-docker` to detect if it is started. May everything is very well.
 </details>
 
-# Client configuration
+## Client configuration
 <details><summary>click to expand</summary>
 Beside the project specific setup we need 2 more things, an ssh-key that is used to easily communicate between client and server. And a ssh configuring for our server.
 
@@ -75,7 +75,7 @@ For android you can now just copy the mainframer folder and rename it `.mainfram
 
 </details>
 
-### In addition
+## In addition
 
 **How to install other sdk?**
 Modify Dockerfile to rebuild. Or follow these steps:
@@ -86,3 +86,8 @@ Modify Dockerfile to rebuild. Or follow these steps:
 
 **Mainframer also can build other kind of project**
 You can fork this project to edit `Dockerfile` to make it work for your project.
+
+
+
+### Other features of Mainframer:
+[mainframer/v2.1.0 doc](https://github.com/buildfoundation/mainframer/tree/v2.1.0/samples/gradle-android)
