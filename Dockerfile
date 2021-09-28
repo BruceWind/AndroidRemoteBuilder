@@ -14,6 +14,7 @@ FROM ubuntu:20.04
 ENV VERSION_TOOLS "6609375"
 
 ENV ANDROID_SDK_ROOT "/sdk"
+ENV JAVA_SDK_ROOT="/usr/lib/jvm/java-8-openjdk-amd64/"
 # Keep alias for compatibility
 ENV ANDROID_HOME "${ANDROID_SDK_ROOT}"
 ENV PATH "$PATH:${ANDROID_SDK_ROOT}/tools"
@@ -30,8 +31,10 @@ RUN apt-get -qq update && \
   mkdir -p /root/.ssh/ && \
   touch /root/.ssh/environment && \
   echo "ANDROID_HOME=${ANDROID_SDK_ROOT}"  >> /root/.ssh/environment && \
+  echo "JAVA_HOME=${JAVA_SDK_ROOT}"  >> /root/.ssh/environment && \
   touch /etc/enviroment && \
-  echo "ANDROID_HOME=${ANDROID_SDK_ROOT}"  >> /etc/enviroment
+  echo "ANDROID_HOME=${ANDROID_SDK_ROOT}"  >> /etc/enviroment && \
+  echo "JAVA_HOME=${JAVA_SDK_ROOT}"  >> /etc/enviroment
 EXPOSE 22
 CMD    ["/usr/sbin/sshd", "-D"]
 
@@ -45,7 +48,6 @@ RUN apt-get -qq update \
   rsync \
   git-core \
   html2text \
-  openjdk-11-jdk \
   libc6-i386 \
   lib32stdc++6 \
   lib32gcc1 \
@@ -54,6 +56,15 @@ RUN apt-get -qq update \
   unzip \
   locales \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+
+RUN apt-get update \
+    && apt-get remove --purge openjdk-11-jdk-headless -y \
+    && apt-get install -y openjdk-8-jdk
+
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
+RUN export JAVA_HOME
+
 RUN locale-gen en_US.UTF-8
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
