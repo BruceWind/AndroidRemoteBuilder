@@ -15,7 +15,7 @@ Before I said that remote-builder configuring with Android will spend lots time 
 ***In this repo, I make a docker image that contains Android environment and [Mainframer](https://github.com/buildfoundation/mainframer)***. 
 You can run it on your desktop in case you have a powerful/high-performance desktop. It is not required that the desktop and your laptop **under one LAN**. In case the desktop you can connect from anywhere, it can be set the docker image. Furthermore, you can put the docker image on a cloud service, such as, google or amazon cloud server, for your remote and powerful building. Cloud services are elastic in performance and price. Besides, you may think cloud server is high-latency. I have to explain that latency won't effect your building experience because mainframer does not to communitcate your laptop many times in a building process. Even copying files only in before and after buiding build. And the full-file-copy task only once.
 
-To sum up, I explained that the repo works for remote-building. After you establish a remote-builder, you can bring you laptop to coffee shop, grass and sunshine without electric charging. 
+To sum up, I explained that the repo works for remote-building. It is able to solve laptop performance and save more power from battery. So after you establish a remote-builder, you can bring you laptop to coffee shop, grass and sunshine without electric charging. 
 
 ## Server configuration
 <details><summary>click to expand</summary>
