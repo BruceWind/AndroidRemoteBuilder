@@ -2,9 +2,10 @@
 
 [简体中文](https://github.com/BruceWind/AndroidRemoteBuildWithDocker/blob/main/README_zh.md)
 
-If you build large Android project on MacBook or other laptops, you must think your computer performance is not enough. Your laptop battery is not enough as well.  And you must spend a lot time on waiting it.
-So you may want a powerful and portable workstation. It is impossible but you can build on remote desktop.
-The trouble on me as well but I fixed it. I used to establish a remote-builder on my powerful desktop. I control the remote-builder by not only terminal but also Android studio.
+In people someone build large Android projects on MacBook or other laptops, laptop's they have may slow in building. The laptop's batteries are not enough as well. And people would spend a lot time on that.
+So some people have the need of a powerful and portable workstation. It is impossible but you can build on remote desktop.
+
+The trouble was on me as well, however, I fixed it. I used to establish a remote-builder on my powerful desktop. I control the remote-builder by not only terminal but also Android studio.
 A problem is that remote-builder configuring with Android will spend lots time. In building it on a cloud service or new desktop, tremendous steps of configuration make me tired. So I made this repo integrate with a couple of technologies: virtualization technolgy and a remote-builder tool.
 
 [Mainframer](https://github.com/buildfoundation/mainframer), the remote-builder tool is can do two things:  syncing files and executing build commands. Its official explain: 
