@@ -2,7 +2,7 @@
 
 [简体中文](https://github.com/BruceWind/AndroidRemoteBuildWithDocker/blob/main/README_zh.md)
 
-People building large Android projects on MacBook or other laptops, laptop's they have may slow in building. The laptop's batteries are not enough as well. And people would spend a lot time on that.
+Some people building large Android projects on laptops may got depressed in building costs such as time and battery usage.
 So some people have the need of a powerful and portable workstation. It is impossible but you can build on remote desktop.
 
 The trouble was on me as well, however, I fixed it. I used to establish a remote-builder on my powerful desktop. I control the remote-builder by not only terminal but also Android studio.
