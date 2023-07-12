@@ -43,7 +43,8 @@
 
   ```bash
   ssh-keygen -t rsa -f ~/.ssh/remote-builder -q -N ""
-  #brew install ssh-copy-id
+  #for mac, you may need to run: brew install ssh-copy-id
+  # at the  following step, you might need to input password: root
   ssh-copy-id -i ~/.ssh/remote-builder  -p 23 root@127.0.0.1
 
   echo -e "Host remote_builder
@@ -56,25 +57,23 @@
             ControlPath /tmp/%r@%h:%p 
             ControlPersist 1h" >> ~/.ssh/config
   ```
-  **REPLACE IP ADDRESS**
+  **别忘记替换上述 IP地址**
 
-用ssh连接服务器: `ssh remote_builder`
+用ssh测试连接进服务器的docker: `ssh remote_builder`，命令输入之后没有报错的话，说明SSH connection是好的。
 
-为了Android，你拷贝我已经建立了的`.mainframer` 目录和一个文件`./mainframer.sh`到您的项目下。然后，你可以运行` bash ./mainframer.sh ./gradlew assembleDebug`去尝试启动命令行编译.
+对于Android项目，你拷贝当前repo下的`.mainframer` 目录和一个文件`./mainframer.sh`到您的项目下。
+然后，你可以运行` bash ./mainframer.sh ./gradlew assembleDebug`去尝试启动命令行编译.
 
 **And now enjoy faster builds**
 
-### DEFAULT USER ROOT:ROOT IS USED IN THIS SETUP.
-
-
-
+当然，你可以尝试直接使用AS UI的安装和调试，但是编译过程只跑在服务器上：
 ### 使用Android Studio远程编译
 
 1. 用Android Studio打开 your project.
 
 3. 点击 **Run → Edit Configuration → +**.
 
-4. 选择 your **Android App**.
+4. 选择你的项目的主application，它的名字一般为**App**.
 
 5. 使用一个新的名字, e.g. remote-build.
 
