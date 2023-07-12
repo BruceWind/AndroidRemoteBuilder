@@ -34,11 +34,13 @@ Now, if there is no error,  run `docker container ls | grep mainframer-docker` t
 
 ## Client configuration
 <details><summary>click to expand</summary>
-Beside the project specific setup we need 2 more things, an ssh-key that is used to easily communicate between client and server. And a ssh configuring for our server.
+  
+Beside the project specific setup we need 2 more things, an ssh-key that is used to easily communicate between client and server. And a ssh configuration for our server.
 
   ```bash
   ssh-keygen -t rsa -f ~/.ssh/remote-builder -q -N ""
-  #brew install ssh-copy-id
+  # for mac, you may need to  run: brew install ssh-copy-id
+  # At the next command, you must input the password:root for ssh-copy
   ssh-copy-id -i ~/.ssh/remote-builder  -p 23 root@127.0.0.1
 
   echo -e "Host remote_builder
@@ -53,17 +55,15 @@ Beside the project specific setup we need 2 more things, an ssh-key that is used
   ```
   **DONT FORGET TO REPLACE IP ADDRESS**
 
-To SSH to the docker container: `ssh remote_builder`
+To verify the SSH configuration of the docker works very well, you can run: `ssh remote_builder`. If there is no error, the ssh-conf must be correct.
 
-For android you can now copy the folder  `.mainframer` and file `./mainframer.sh` into your project folder. Then you can run `bash ./mainframer.sh ./gradlew assembleDebug`.
+For Android you can now copy the folder  `.mainframer` and file `./mainframer.sh` into your project folder. Then you can run `bash ./mainframer.sh ./gradlew assembleDebug` to make sure it works ok.
 
 **And now enjoy faster builds**
 
-### DEFAULT USER ROOT:ROOT IS USED IN THIS SETUP.
+Btw, you might like to run this within your Android Studio or Jetbrian IDEA. Please follow steps below:
 
-
-
-### build with Android Studio
+### Build with Android Studio
 
 1. open Android Studio to open your project.
 
@@ -90,19 +90,19 @@ For android you can now copy the folder  `.mainframer` and file `./mainframer.sh
 
 ## In addition
 
-**How to install other sdk?**
+**How to install another SDK?**
 
 > In most circumstances, you don't need to do it. SDK downloading will automatically execute。
 
 Modify Dockerfile to rebuild. Or follow these steps:
 
 1. start your docker.
-2. run `ssh remote_builder` to enter your docker container. Or use docker command to enter it.
+2. run `ssh remote_builder` to enter your docker container. Or use the docker command to enter it.
 3. by the time you entered the bash on your docker container, run: 
 
     `/sdk/tools/bin/sdkmanager--install "ndk;21.0.6113669" --channel=3`.
 
-**Mainframer also can build other kind of project**
+**Mainframer also can build other kinds of projects**
 You can fork this project to edit `Dockerfile` to make it work for your project.
 
 
